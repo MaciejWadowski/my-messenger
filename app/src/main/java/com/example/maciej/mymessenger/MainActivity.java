@@ -1,52 +1,34 @@
 package com.example.maciej.mymessenger;
 
-import android.support.annotation.NonNull;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import com.google.firebase.database.*;
+import android.widget.Button;
+import com.example.maciej.mymessenger.login.LoginActivity;
+import com.example.maciej.mymessenger.login.RegisterActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG = MainActivity.class.toString();
-
-    private DatabaseReference mDatabase;
-    private EditText mMessage;
+    private Button mLoginButton;
+    private Button mRegisterButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMessage = findViewById(R.id.user_message);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        final TextView chatMessages = findViewById(R.id.chat);
-
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getValue() == null) {
-                    return;
-                }
-                chatMessages.append(dataSnapshot.getValue().toString() + "\n");
-                Log.d(LOG_TAG, "Value " + dataSnapshot.getValue().toString() + " send");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                chatMessages.setText(R.string.error_db);
-                Log.e(LOG_TAG, "Sending a message failed");
-            }
-        });
+        mLoginButton = (Button) findViewById(R.id.login_activity);
+        mRegisterButton = (Button) findViewById(R.id.register_activity);
     }
 
+    public void registerActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+        startActivity(intent);
+    }
 
-    public void sendMessage(View view) {
-        mDatabase.setValue(mMessage.getText().toString());
-        mMessage.setText("");
+    public void logInActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 }
