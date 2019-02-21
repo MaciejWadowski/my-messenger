@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import com.example.maciej.mymessenger.login.LoginActivity;
-import com.example.maciej.mymessenger.login.RegisterActivity;
+import com.example.maciej.mymessenger.ui.LoginActivity;
+import com.example.maciej.mymessenger.ui.RegisterActivity;
 
 public class MainActivity extends AppCompatActivity {
 

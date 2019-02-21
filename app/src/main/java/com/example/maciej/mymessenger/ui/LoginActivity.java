@@ -1,4 +1,4 @@
-package com.example.maciej.mymessenger.login;
+package com.example.maciej.mymessenger.ui;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.maciej.mymessenger.R;
-import com.example.maciej.mymessenger.chat.TemporaryChat;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -79,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                         mPasswordField.setText("");
                     } else {
                         Toast.makeText(getApplicationContext(), "Succesfully signed in", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(LoginActivity.this, TemporaryChat.class);
+                        Intent intent = new Intent(LoginActivity.this, ApplicationActivity.class);
                         intent.putExtra("USER_EMAIL", mEmailField.getText().toString());
                         startActivity(intent);
                     }
