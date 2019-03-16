@@ -23,5 +23,7 @@
     <string name="tab_text_2">Groups</string>
     <string name="tab_text_3">Profile</string>
     <string name="action_settings">Settings</string>
+    <string name="add_friend_hint">Add a friend...</string>
+    <string name="add_friend">Add</string>
 
 </resources>

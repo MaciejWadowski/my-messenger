@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.example.maciej.mymessenger.R;
 import com.example.maciej.mymessenger.user.User;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
 
 public class TemporaryChat extends AppCompatActivity {
@@ -30,13 +31,13 @@ public class TemporaryChat extends AppCompatActivity {
         final TextView chatMessages = findViewById(R.id.chat_text);
 
         String userEmail = getIntent().getStringExtra("USER_EMAIL");
-        user = new User(userEmail);
+        user = new User(userEmail, FirebaseAuth.getInstance().getUid());
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null) {
-                    chatMessages.append(user.getName()  + ": " + dataSnapshot.getValue().toString() + '\n');
+                    chatMessages.append(user.getEmail()  + ": " + dataSnapshot.getValue().toString() + '\n');
                     Log.d(LOG_TAG,  "Value " + dataSnapshot.getValue().toString() + " sent");
                 }
             }

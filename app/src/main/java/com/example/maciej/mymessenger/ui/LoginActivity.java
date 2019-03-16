@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
+    public static final String EXTRA = "USER_MAIL";
+
     private EditText mEmailField;
     private EditText mPasswordField;
     private Button mLoginButton;
@@ -58,7 +60,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mAuth.signOut();
     }
 
     public void startSignIn(View view) {
@@ -79,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(getApplicationContext(), "Succesfully signed in", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.this, ApplicationActivity.class);
-                        intent.putExtra("USER_EMAIL", mEmailField.getText().toString());
+                        intent.putExtra(EXTRA, mEmailField.getText().toString());
                         startActivity(intent);
                     }
                     mProgressBar.setVisibility(View.INVISIBLE);
